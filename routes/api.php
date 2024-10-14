@@ -10,6 +10,9 @@ use App\Http\Controllers\Api\TazasController;
 use App\Http\Controllers\Api\TermoController;
 
 
+Route::get('Termo',[TermoController::class, 'index']);
+Route::get('Termo/{termo}',[TermoController::class, 'show']);
+
 /*
 Route::get('/user', function (Request $request) {
     return $request->user();
