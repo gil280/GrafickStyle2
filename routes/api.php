@@ -9,8 +9,12 @@ use App\Http\Controllers\Api\SudaderaController;
 use App\Http\Controllers\Api\TazasController;
 use App\Http\Controllers\Api\TermoController;
 use App\Http\Resources\PlayeraResource;
+use App\Models\Extras;
 use App\Models\Pulsera;
 use App\Models\Sudadera;
+
+Route::get('Extras',[ExtrasController::class, 'index']);
+Route::get('Extras/{Extras}',[ExtrasController::class, 'show']);
 
 Route::get('Termo',[TermoController::class, 'index']);
 Route::get('Termo/{termo}',[TermoController::class, 'show']);

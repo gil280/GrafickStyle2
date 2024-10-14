@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Taza extends Model
 {
     use HasFactory;
+    protected $fililable =[
+        'id',
+        'Diseño',
+        'Imagenes',
+        'Cantidad',
+        'Fecha de entrega',
+        'Precio',
+    ];
 }
