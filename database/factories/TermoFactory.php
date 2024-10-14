@@ -17,6 +17,7 @@ class TermoFactory extends Factory
     public function definition(): array
     {
         return [
+                'Termo_id' => \App\Models\Termo::all()->random()->id,
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),

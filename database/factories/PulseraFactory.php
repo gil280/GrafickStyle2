@@ -17,6 +17,7 @@ class PulseraFactory extends Factory
     public function definition(): array
     {
         return [
+                'Pulsera_id' => \App\Models\Pulsera::all()->random()->id,
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),
