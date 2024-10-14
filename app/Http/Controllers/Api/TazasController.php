@@ -21,7 +21,7 @@ class TazasController extends Controller
 
     public function store(StoreTazasRequest $request){
         $Tazas = Taza::create($request->all());
-        $Tazas->etiquetas()->attach(json_decode($request->etiquetas));
+        $Tazas->etiquetas()->attach(json_decode($request->Tazas));
         return response()->json(new TazasResource($Tazas),Response::HTTP_CREATED);
 
     }
@@ -33,8 +33,8 @@ class TazasController extends Controller
     public function update(UpdateTazasRequest $request, Taza $Tazas){
         $Tazas->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Tazas->etiquetas()->sync($etiquetas);
+        if($etiquetas = json_decode($request->Tazas)){
+            $Tazas->Tazas()->sync($Tazas);
 
         }
     }

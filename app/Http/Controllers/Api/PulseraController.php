@@ -21,7 +21,7 @@ class PulseraController extends Controller
 
     public function store(StorePulseraRequest $request){
         $Pulsera = Pulsera::create($request->all());
-        $Pulsera->etiquetas()->attach(json_decode($request->etiquetas));
+        $Pulsera->Pulsera()->attach(json_decode($request->etiquetas));
         return response()->json(new PulseraResource($Pulsera),Response::HTTP_CREATED);
 
     }
@@ -33,8 +33,8 @@ class PulseraController extends Controller
     public function update(UpdatePulseraRequest $request, Pulsera $Pulsera){
         $Pulsera->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Pulsera->etiquetas()->sync($etiquetas);
+        if($Pulsera = json_decode($request->Pulsera)){
+            $Pulsera->Pulsera()->sync($Pulsera);
 
         }
     }

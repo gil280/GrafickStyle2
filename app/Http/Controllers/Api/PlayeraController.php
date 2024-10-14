@@ -22,7 +22,7 @@ class PlayeraController extends Controller
 
     public function store(StorePlayeraRequest $request){
         $Playera = Playeras::create($request->all());
-        $Playera->etiquetas()->attach(json_decode($request->etiquetas));
+        $Playera->Playera()->attach(json_decode($request->Playera));
         return response()->json(new PlayeraResource($Playera),Response::HTTP_CREATED);
 
     }
@@ -34,8 +34,8 @@ class PlayeraController extends Controller
     public function update(UpdatePlayeraRequest $request, Playeras $Playera){
         $Playera->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Playera->etiquetas()->sync($etiquetas);
+        if($Playera = json_decode($request->Playera)){
+            $Playera->Playera()->sync($Playera);
 
         }
     }

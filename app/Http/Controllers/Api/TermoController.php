@@ -21,7 +21,7 @@ class TermoController extends Controller
 
     public function store(StoreTermoRequest $request){
         $Termo = Termo::create($request->all());
-        $Termo->etiquetas()->attach(json_decode($request->etiquetas));
+        $Termo->termo()->attach(json_decode($request->etiquetas));
         return response()->json(new TermoResource($Termo),Response::HTTP_CREATED);
 
     }
@@ -33,8 +33,8 @@ class TermoController extends Controller
     public function update(UpdateTermoRequest $request, Termo $Termo){
         $Termo->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Termo->etiquetas()->sync($etiquetas);
+        if($Termo = json_decode($request->Termo)){
+            $Termo->Tazas()->sync($Termo);
 
         }
     }

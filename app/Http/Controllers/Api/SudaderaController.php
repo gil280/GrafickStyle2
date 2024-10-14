@@ -21,7 +21,7 @@ class SudaderaController extends Controller
 
     public function store(StoreSudaderaRequest $request){
         $Sudadera = Sudadera::create($request->all());
-        $Sudadera->etiquetas()->attach(json_decode($request->etiquetas));
+        $Sudadera->Sudadera()->attach(json_decode($request->Suaderas));
         return response()->json(new SudaderaResource($Sudadera),Response::HTTP_CREATED);
 
     }
@@ -33,8 +33,8 @@ class SudaderaController extends Controller
     public function update(UpdateSudaderaRequest $request, Sudadera $Sudadera){
         $Sudadera->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Sudadera->etiquetas()->sync($etiquetas);
+        if($Sudadera = json_decode($request->Sudadera)){
+            $Sudadera->Playera()->sync($Sudadera);
 
         }
     }

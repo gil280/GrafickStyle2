@@ -21,7 +21,7 @@ class ExtrasController extends Controller
 
     public function store(StoreExtrasRequest $request){
         $Extras = Extras::create($request->all());
-        $Extras->etiquetas()->attach(json_decode($request->etiquetas));
+        $Extras->Extras()->attach(json_decode($request->Extras));
         return response()->json(new ExtrasResource($Extras),Response::HTTP_CREATED);
 
     }
@@ -33,8 +33,8 @@ class ExtrasController extends Controller
     public function update(UpdateExtrasRequest $request, Extras $Extras){
         $Extras->update($request->all());
 
-        if($etiquetas = json_decode($request->etiquetas)){
-            $Extras->etiquetas()->sync($etiquetas);
+        if($Extras = json_decode($request->Extras)){
+            $Extras->Extras()->sync($Extras);
 
         }
     }
