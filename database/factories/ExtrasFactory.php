@@ -18,7 +18,7 @@ class ExtrasFactory extends Factory
     {
     
     return [
-                'Extras_id' => \App\Models\Extras::all()->random()->id,
+                //'Extras_id' => \App\Models\Extras::all()->random()->id,
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),
