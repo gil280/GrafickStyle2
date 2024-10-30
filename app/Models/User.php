@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Laravel\Sanctum\HasApiTokens;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -44,4 +46,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+public function Extras(){
+    return $this->hasMany(Extras::class);
+}
+public function Playeras(){
+    return $this->hasMany(Playeras ::class);
+}
+public function Pulsera(){
+    return $this->hasMany(Pulsera ::class);
+}
+public function Sudadera(){
+    return $this->hasMany(Sudadera ::class);
+}
+public function Taza(){
+    return $this->hasMany(Taza ::class);
+}
+public function Termo(){
+    return $this->hasMany(Termo ::class);
+}
 }
