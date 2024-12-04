@@ -15,7 +15,18 @@ use App\Http\Resources\PlayeraResource;
 use App\Models\Extras;
 use App\Models\Pulsera;
 use App\Models\Sudadera;
+use App\Models\Termo;
 
+Route::middleware('auth:sanctum')->group(function(){
+Route::post('login',[LoginController::class,'store']);
+
+Route::apiResource('Extras',ExtrasController::class);
+Route::apiResource('Termo',TermoController::class);
+Route::apiResource('Tazas',TazasController::class);
+Route::apiResource('Sudadera',SudaderaController::class);
+Route::apiResource('Pulsera',PulseraController::class);
+Route::apiResource('Playera',PlayeraController::class);
+});
 
 Route::get('Extras',[ExtrasController::class, 'index']);
 Route::get('Extras/{Extras}',[ExtrasController::class, 'show']);
@@ -25,10 +36,10 @@ Route::post('Extras',[ExtrasController::class, 'index']);
 Route::post('Extras/{Extras}',[ExtrasController::class, 'show']);
 
 Route::patch('Extras',[ExtrasController::class, 'index']);
-Route::patch('Extras/{Extras}',[ExtrasController::class, 'show']);
+Route::patch('Extras/{Extras}',[ExtrasController::class, 'update']);
 
 Route::delete('Extras',[ExtrasController::class, 'index']);
-Route::delete('Extras/{Extras}',[ExtrasController::class, 'show']);
+Route::delete('Extras/{Extras}',[ExtrasController::class, 'update']);
 
 
 Route::get('Termo',[TermoController::class, 'index']);
@@ -38,10 +49,10 @@ Route::post('Termo',[TermoController::class, 'index']);
 Route::post('Termo/{termo}',[TermoController::class, 'show']);
 
 Route::patch('Termo',[TermoController::class, 'index']);
-Route::patch('Termo/{termo}',[TermoController::class, 'show']);
+Route::patch('Termo/{termo}',[TermoController::class, 'update']);
 
 Route::delete('Termo',[TermoController::class, 'index']);
-Route::delete('Termo/{termo}',[TermoController::class, 'show']);
+Route::delete('Termo/{termo}',[TermoController::class, 'destroy']);
 
 
 Route::get('Tazas',[TazasController::class, 'index']);
@@ -51,10 +62,10 @@ Route::post('Tazas',[TazasController::class, 'index']);
 Route::post('Tazas/{Tazas}',[TazasController::class, 'show']);
 
 Route::patch('Tazas',[TazasController::class, 'index']);
-Route::patch('Tazas/{Tazas}',[TazasController::class, 'show']);
+Route::patch('Tazas/{Tazas}',[TazasController::class, 'update']);
 
 Route::delete('Tazas',[TazasController::class, 'index']);
-Route::delete('Tazas/{Tazas}',[TazasController::class, 'show']);
+Route::delete('Tazas/{Tazas}',[TazasController::class, 'destroy']);
 
 
 Route::get('Sudadera',[SudaderaController::class, 'index']);
@@ -64,10 +75,10 @@ Route::post('Sudadera',[SudaderaController::class, 'index']);
 Route::post('Suadadera/{sudadera}',[SudaderaController::class, 'show']);
 
 Route::patch('Sudadera',[SudaderaController::class, 'index']);
-Route::patch('Suadadera/{sudadera}',[SudaderaController::class, 'show']);
+Route::patch('Suadadera/{sudadera}',[SudaderaController::class, 'update']);
 
 Route::delete('Sudadera',[SudaderaController::class, 'index']);
-Route::delete('Suadadera/{sudadera}',[SudaderaController::class, 'show']);
+Route::delete('Suadadera/{sudadera}',[SudaderaController::class, 'destroy']);
 
 
 Route::get('Pulsera',[PulseraController::class, 'index']);
@@ -77,10 +88,10 @@ Route::post('Pulsera',[PulseraController::class, 'index']);
 Route::post('Pulsera/{Pulsera}',[PulseraController::class, 'show']);
 
 Route::patch('Pulsera',[PulseraController::class, 'index']);
-Route::patch('Pulsera/{Pulsera}',[PulseraController::class, 'show']);
+Route::patch('Pulsera/{Pulsera}',[PulseraController::class, 'update']);
 
 Route::delete('Pulsera',[PulseraController::class, 'index']);
-Route::delete('Pulsera/{Pulsera}',[PulseraController::class, 'show']);
+Route::delete('Pulsera/{Pulsera}',[PulseraController::class, 'destroy']);
 
 
 Route::get('Playera',[PlayeraController::class, 'index']);
@@ -90,10 +101,10 @@ Route::post('Playera',[PlayeraController::class, 'index']);
 Route::post('Playera/{Playera}',[PlayeraController::class, 'show']);
 
 Route::patch('Playera',[PlayeraController::class, 'index']);
-Route::patch('Playera/{Playera}',[PlayeraController::class, 'show']);
+Route::patch('Playera/{Playera}',[PlayeraController::class, 'update']);
 
 Route::delete('Playera',[PlayeraController::class, 'index']);
-Route::delete('Playera/{Playera}',[PlayeraController::class, 'show']);
+Route::delete('Playera/{Playera}',[PlayeraController::class, 'delete']);
 
 Route::apiResource('Termo',TermoController::class);
 Route::apiResource('Taza',TazasController::class);
@@ -102,8 +113,4 @@ Route::apiResource('Pulsera',PulseraController::class);
 Route::apiResource('Playera',PlayeraController::class);
 
 
-/*
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-*/
+

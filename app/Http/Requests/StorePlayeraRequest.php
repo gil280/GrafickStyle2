@@ -11,7 +11,7 @@ class StorePlayeraRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StorePlayeraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|integer',
+            //'user_id' => 'required|integer',
+            'imagenes' => 'required|string',
+            'cantidad' => 'required|integer',
+            'precio' => 'required|integer',
+         
         ];
     }
 }
