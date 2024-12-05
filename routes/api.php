@@ -10,15 +10,6 @@ use App\Http\Controllers\Api\TazasController;
 use App\Http\Controllers\Api\TermoController;
 use App\Http\Controllers\Api\LoginController;
 
-Route::middleware('auth:sanctum')->group(function(){});
-Route::post('login',[LoginController::class,'store']);
-Route::middleware('auth:sanctum')->group(function() {});
-
-Route::apiResource('Termo',TermoController::class);
-Route::apiResource('Taza',TazasController::class);
-Route::apiResource('Sudadera',SudaderaController::class);
-Route::apiResource('Pulsera',PulseraController::class);
-Route::apiResource('Playera',PlayeraController::class);
 
 use App\Http\Resources\PlayeraResource;
 use App\Models\Extras;
@@ -26,6 +17,15 @@ use App\Models\Pulsera;
 use App\Models\Sudadera;
 use App\Models\Termo;
 
+Route::post('login',[LoginController::class,'store']);
+
+Route::middleware('auth:sanctum')->group(function() {
+
+Route::apiResource('Termo',TermoController::class);
+Route::apiResource('Taza',TazasController::class);
+Route::apiResource('Sudadera',SudaderaController::class);
+Route::apiResource('Pulsera',PulseraController::class);
+Route::apiResource('Playera',PlayeraController::class);
 
 
 Route::get('Extras',[ExtrasController::class, 'index']);
@@ -108,5 +108,5 @@ Route::delete('Playera/{Playera}',[PlayeraController::class, 'delete']);
 
 
 
-
+});
 

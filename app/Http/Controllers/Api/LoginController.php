@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
-
 class LoginController extends Controller
 {
     public function store(Request $request){
         $request->validate([
+
             'correo' => 'required|email',
             'contraseña' => 'required',
             'dispositivo' => 'required'

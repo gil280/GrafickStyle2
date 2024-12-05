@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+
+
 
 class Extras extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasRoles, HasApiTokens;
 
     protected $fililable =[
         'id',

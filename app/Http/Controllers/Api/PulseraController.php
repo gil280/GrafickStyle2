@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\PulseraResource;
 use App\Http\Requests\StorePulseraRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Http\Requests\UpdatePulseraRequest;
 
@@ -15,7 +16,9 @@ use App\Models\Pulsera;
 
 class PulseraController extends Controller
 {
+    use AuthorizesRequests;
     public function index(){
+        $this->authorize('ver');
         return PulseraResource::collection(Pulsera::all());
     }
 
@@ -27,10 +30,12 @@ class PulseraController extends Controller
     }
 
     public function show(Pulsera $Pulsera){
+        $this->authorize('ver');
         return new PulseraResource($Pulsera);
     }
 
     public function update(UpdatePulseraRequest $request, Pulsera $Pulsera){
+        $this->authorize('Actualizar');
         $Pulsera->update($request->all());
 
         if($Pulsera = json_decode($request->Pulsera)){
@@ -40,6 +45,7 @@ class PulseraController extends Controller
     }
 
     public function destroy(Pulsera $Pulsera){
+        $this->authorize('Eliminar');
 
         $Pulsera->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT); // 204 

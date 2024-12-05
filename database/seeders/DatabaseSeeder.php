@@ -19,19 +19,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(RoleSeeder::class);
         // User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Gildardo',
             'email' => 'garciareyesgildardo@gmail.com',
-        ]);
+            ])->assignRole('Administrador');
 
-        Extras::factory(100)->create();
-        Playeras::factory(100)->create();
-        Pulsera::factory(100)->create();
-        Sudadera::factory(100)->create();
-        Taza::factory(100)->create();
-        Termo::factory(100)->create();
+            User::factory()->create([
+                'name' => 'Emmanuel',
+                'email' => 'Emmanuel@gmail.com',
+            ])->assignRole('Editor');
+            
+            User::factory(5)->create()->each(function ($user) {
+                $user->assignRole('Usuario');
+            });
+        
+
+        Extras::factory(20)->create();
+        Playeras::factory(20)->create();
+        Pulsera::factory(20)->create();
+        Sudadera::factory(20)->create();
+        Taza::factory(20)->create();
+        Termo::factory(20)->create();
     
 
     }
