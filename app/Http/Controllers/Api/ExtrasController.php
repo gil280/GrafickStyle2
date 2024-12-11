@@ -16,10 +16,46 @@ use App\Http\Requests\UpdateExtrasRequest;
 
 use App\Models\Extras;
 
+/**
+* @OA\Info(
+*             title="API Extras", 
+*             version="1.0",
+*             description="Listado de los productos extras"
+* )
+*
+* @OA\Server(url="http://127.0.0.1:8000")
+*/
+
 class ExtrasController extends Controller
 
 {
     use AuthorizesRequests;
+/**
+     * @OA\Get(
+     *    path="/api/Extras",
+     *    summary="Consultar todos los extras",
+     *    description="Retorna todas las recetas",
+     *    tags={"Extras"},
+     *    security={{"bearer_token":{}}},
+     *    @OA\Response(
+     *       response=200,
+     *      description="Operación exitosa",
+     *   ),
+     *   @OA\Response(
+     *     response=403,
+     *     description="No autorizado"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="No se encontraron recetas"
+     *   ),
+     *   @OA\Response(
+     *    response=405,
+     *    description="Método no permitido"
+     *   )
+     * )
+     */
+
     public function index(){
         $this->authorize('ver');
         return ExtrasResource::collection(Extras::all());

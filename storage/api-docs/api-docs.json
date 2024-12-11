@@ -1,0 +1,60 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Extras",
+        "description": "Listado de los productos extras",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/Extras": {
+            "get": {
+                "tags": [
+                    "Extras"
+                ],
+                "summary": "Consultar todos los extras",
+                "description": "Retorna todas las recetas",
+                "operationId": "82043d6fe3d3c6c7acae931d2d019f8f",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    },
+                    "404": {
+                        "description": "No se encontraron recetas"
+                    },
+                    "405": {
+                        "description": "Método no permitido"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Extras",
+            "description": "Extras"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Sanctum bearer token",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
