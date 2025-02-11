@@ -17,7 +17,7 @@ class TazaFactory extends Factory
     public function definition(): array
     {
         return [
-                //'Taza_id' => \App\Models\Taza::all()->random()->id,          
+                'Taza_id' => \App\Models\Taza::all()->random()->id,          
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),

@@ -12,8 +12,19 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->validateCsrfTokens(except: ['http://localhost:8000']
-    );
+        $middleware->api(prepend: [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        ]);
+
+        $middleware->alias([
+            'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+        ]);
+        
+        $middleware->validateCsrfTokens(except: [
+            'http://localhost:8000/*',
+        ]);
+
+        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

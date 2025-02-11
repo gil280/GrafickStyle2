@@ -16,43 +16,59 @@ use App\Http\Requests\UpdateExtrasRequest;
 
 use App\Models\Extras;
 
-/**
-* @OA\Info(
-*             title="API Extras", 
-*             version="1.0",
-*             description="Listado de los productos extras"
-* )
-*
-* @OA\Server(url="http://127.0.0.1:8000")
-*/
 
 class ExtrasController extends Controller
 
 {
     use AuthorizesRequests;
 /**
-     * @OA\Get(
-     *    path="/api/Extras",
-     *    summary="Consultar todos los extras",
-     *    description="Retorna todas las recetas",
-     *    tags={"Extras"},
-     *    security={{"bearer_token":{}}},
-     *    @OA\Response(
-     *       response=200,
-     *      description="Operación exitosa",
-     *   ),
-     *   @OA\Response(
-     *     response=403,
-     *     description="No autorizado"
-     *   ),
-     *   @OA\Response(
-     *     response=404,
-     *     description="No se encontraron recetas"
-     *   ),
-     *   @OA\Response(
-     *    response=405,
-     *    description="Método no permitido"
-     *   )
+     * extras
+     * @OA\Get (
+     *     path="/api/Extras",
+     *     tags={"Extras"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="Logotipos",
+     *                         type="string",
+     *                         example="logo1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="Imagenes editadas",
+     *                         type="string",
+     *                         example="img1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="Cantidad",
+     *                         type="unsignedInteger",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="Fecha de entrega",
+     *                         type="datetime",
+     *                         example="2023-02-23T12:33:45.000000Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="Precio",
+     *                         type="number",
+     *                         example="10.5"
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     )
      * )
      */
 
@@ -68,12 +84,93 @@ class ExtrasController extends Controller
         return response()->json(new ExtrasResource($Extras),Response::HTTP_CREATED);
 
     }
+ /**
+ * Mostrar la información de un Extra
+ * @OA\Get (
+ *     path="/api/Extras/{id}",
+ *     tags={"Extras"},
+ *     summary="Obtener un Extra específico",
+ *     description="Retorna los detalles de un Extra con el ID proporcionado.",
+ *     @OA\Parameter(
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="id", type="integer", example=1),
+ *             @OA\Property(property="Logotipos", type="string", example="Logo1"),
+ *             @OA\Property(property="Imagenes editadas", type="string", example="img1"),
+ *             @OA\Property(property="Cantidad", type="integer", example=2),
+ *             @OA\Property(property="Fecha de entrega", type="string", format="date-time", example="2023-02-23T12:33:45.000000Z"),
+ *             @OA\Property(property="Precio", type="number", format="float", example=10.5)
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="No se encontró el Extra",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Extras] #id")
+ *         )
+ *     )
+ * )
+ */
 
     public function show(Extras $Extras){
         $this->authorize('ver');
         return new ExtrasResource($Extras);
         
     }
+/**
+ * Actualizar un Extra
+ * @OA\Put(
+ *     path="/api/Extras/{id}",
+ *     tags={"Extras"},
+ *     summary="Actualizar un Extra existente",
+ *     description="Actualiza los detalles de un Extra con el ID proporcionado.",
+ *     @OA\Parameter(
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             required={"Logotipos", "Imagenes editadas", "Cantidad", "Fecha de entrega", "Precio"},
+ *             @OA\Property(property="Logotipos", type="string", example="Logo1"),
+ *             @OA\Property(property="Imagenes editadas", type="string", example="img1"),
+ *             @OA\Property(property="Cantidad", type="integer", example=3),
+ *             @OA\Property(property="Fecha de entrega", type="string", format="date-time", example="2023-02-23T12:33:45.000000Z"),
+ *             @OA\Property(property="Precio", type="number", format="float", example=15.5)
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Extra actualizado correctamente",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="id", type="integer", example=1),
+ *             @OA\Property(property="Logotipos", type="string", example="Logo1"),
+ *             @OA\Property(property="Imagenes editadas", type="string", example="img1"),
+ *             @OA\Property(property="Cantidad", type="integer", example=3),
+ *             @OA\Property(property="Fecha de entrega", type="string", format="date-time", example="2023-02-23T12:33:45.000000Z"),
+ *             @OA\Property(property="Precio", type="number", format="float", example=15.5)
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="No se encontró el Extra",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Extras] #id")
+ *         )
+ *     )
+ * )
+ */
 
     public function update(UpdateExtrasRequest $request, Extras $Extras){
         $this->authorize('Actualizar');
@@ -84,6 +181,33 @@ class ExtrasController extends Controller
 
         }
     }
+
+/**
+ * Eliminar un Extra
+ * @OA\Delete(
+ *     path="/api/Extras/{id}",
+ *     tags={"Extras"},
+ *     summary="Eliminar un Extra",
+ *     description="Elimina un Extra del sistema usando el ID proporcionado.",
+ *     @OA\Parameter(
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response=204,
+ *         description="Extra eliminado correctamente"
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="No se encontró el Extra",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Extras] #id")
+ *         )
+ *     )
+ * )
+ */
 
     public function destroy(Extras $Extras){
         $this->authorize('Eliminar');

@@ -17,7 +17,7 @@ class PlayerasFactory extends Factory
     public function definition(): array
     {
         return [
-                //'Playeras_id' => \App\Models\Playeras::all()->random()->id,
+                'Playeras_id' => \App\Models\Playeras::all()->random()->id,
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),

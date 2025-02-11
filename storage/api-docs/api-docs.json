@@ -1,13 +1,13 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Extras",
+        "title": "API ",
         "description": "Listado de los productos extras",
         "version": "1.0"
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000"
+            "url": "http://localhost:8000"
         }
     ],
     "paths": {
@@ -16,21 +16,1296 @@
                 "tags": [
                     "Extras"
                 ],
-                "summary": "Consultar todos los extras",
-                "description": "Retorna todas las recetas",
+                "summary": "extras",
                 "operationId": "82043d6fe3d3c6c7acae931d2d019f8f",
                 "responses": {
                     "200": {
-                        "description": "Operación exitosa"
-                    },
-                    "403": {
-                        "description": "No autorizado"
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "Logotipos": {
+                                                        "type": "string",
+                                                        "example": "logo1"
+                                                    },
+                                                    "Imagenes editadas": {
+                                                        "type": "string",
+                                                        "example": "img1"
+                                                    },
+                                                    "Cantidad": {
+                                                        "type": "unsignedInteger",
+                                                        "example": "1"
+                                                    },
+                                                    "Fecha de entrega": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2023-02-23T12:33:45.000000Z"
+                                                    },
+                                                    "Precio": {
+                                                        "type": "number",
+                                                        "example": "10.5"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Extras/{id}": {
+            "get": {
+                "tags": [
+                    "Extras"
+                ],
+                "summary": "Obtener un Extra específico",
+                "description": "Retorna los detalles de un Extra con el ID proporcionado.",
+                "operationId": "7519a5fd45ea95c9c2d2ceb81aab8868",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Logotipos": {
+                                            "type": "string",
+                                            "example": "Logo1"
+                                        },
+                                        "Imagenes editadas": {
+                                            "type": "string",
+                                            "example": "img1"
+                                        },
+                                        "Cantidad": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "Fecha de entrega": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 10.5
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "404": {
-                        "description": "No se encontraron recetas"
+                        "description": "No se encontró el Extra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Extras] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Extras"
+                ],
+                "summary": "Actualizar un Extra existente",
+                "description": "Actualiza los detalles de un Extra con el ID proporcionado.",
+                "operationId": "cc317ed9ebc35cbae075c015f3efaf95",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Logotipos",
+                                    "Imagenes editadas",
+                                    "Cantidad",
+                                    "Fecha de entrega",
+                                    "Precio"
+                                ],
+                                "properties": {
+                                    "Logotipos": {
+                                        "type": "string",
+                                        "example": "Logo1"
+                                    },
+                                    "Imagenes editadas": {
+                                        "type": "string",
+                                        "example": "img1"
+                                    },
+                                    "Cantidad": {
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "Fecha de entrega": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "2023-02-23T12:33:45.000000Z"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15.5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Extra actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Logotipos": {
+                                            "type": "string",
+                                            "example": "Logo1"
+                                        },
+                                        "Imagenes editadas": {
+                                            "type": "string",
+                                            "example": "img1"
+                                        },
+                                        "Cantidad": {
+                                            "type": "integer",
+                                            "example": 3
+                                        },
+                                        "Fecha de entrega": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 15.5
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
-                    "405": {
-                        "description": "Método no permitido"
+                    "404": {
+                        "description": "No se encontró el Extra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Extras] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Extras"
+                ],
+                "summary": "Eliminar un Extra",
+                "description": "Elimina un Extra del sistema usando el ID proporcionado.",
+                "operationId": "4fab8dda985ec4b1b3f7ed8898394df2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Extra eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró el Extra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Extras] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Playera": {
+            "get": {
+                "tags": [
+                    "Playeras"
+                ],
+                "summary": "Consultar todas las playera",
+                "description": "Retorna todas las playera disponibles",
+                "operationId": "f8d863c39c70b5fe10234d290a0d0004",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Playera roja"
+                                                    },
+                                                    "tamaño": {
+                                                        "type": "string",
+                                                        "example": "L"
+                                                    },
+                                                    "color": {
+                                                        "type": "string",
+                                                        "example": "rojo"
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": "15"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Playeras"
+                ],
+                "summary": "Crear una nueva Playera",
+                "description": "Crea una nueva Playera en el sistema.",
+                "operationId": "556e817f2f38e89de0269cfa98ee3be7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Color",
+                                    "Tamaño",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Playera Azul"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Azul"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "M"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Playera creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Playera Azul"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Azul"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "M"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 15.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 100
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Playera/{id}": {
+            "put": {
+                "tags": [
+                    "Playeras"
+                ],
+                "summary": "Actualizar una Playera existente",
+                "description": "Actualiza los detalles de una Playera con el ID proporcionado.",
+                "operationId": "b862239d23a5737f930cbf0c3c3da6b1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Color",
+                                    "Tamaño",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Playera Roja"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Rojo"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "L"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 20.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 50
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Playera actualizada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Playera Roja"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Rojo"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "L"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 20.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 50
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró la Playera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Playera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Playeras"
+                ],
+                "summary": "Eliminar una Playera",
+                "description": "Elimina una Playera del sistema usando el ID proporcionado.",
+                "operationId": "164aaf80c86812bb8ce639a524b39885",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Playera eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró la Playera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Playera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Pulsera": {
+            "get": {
+                "tags": [
+                    "Pulseras"
+                ],
+                "summary": "Consultar todas las pulseras",
+                "description": "Retorna todas las pulseras disponibles",
+                "operationId": "87a1c9beed1b94d8233ac47a70af6c9c",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Pulsera de cuero"
+                                                    },
+                                                    "color": {
+                                                        "type": "string",
+                                                        "example": "negro"
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": "20"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Pulseras"
+                ],
+                "summary": "Crear una nueva Pulsera",
+                "description": "Crea una nueva Pulsera en el sistema.",
+                "operationId": "b0a1c02cf01b89be720ed8875620f52b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Tamaño",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Pulsera de cuero"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Cuero"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "M"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 50
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pulsera creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Pulsera de cuero"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Cuero"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "M"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 25.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 50
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Pulsera/{id}": {
+            "put": {
+                "tags": [
+                    "Pulseras"
+                ],
+                "summary": "Actualizar una Pulsera existente",
+                "description": "Actualiza los detalles de una Pulsera con el ID proporcionado.",
+                "operationId": "160ecb7b514d5fb08e8940318c92ffcc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Tamaño",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Pulsera de plata"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Plata"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "L"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 30.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pulsera actualizada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Pulsera de plata"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Plata"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "L"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 30.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 100
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró la Pulsera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Pulsera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pulseras"
+                ],
+                "summary": "Eliminar una Pulsera",
+                "description": "Elimina una Pulsera del sistema usando el ID proporcionado.",
+                "operationId": "b78d8d78a0cd40c32ae7ce69f85c7a54",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Pulsera eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró la Pulsera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Pulsera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Sudadera": {
+            "get": {
+                "tags": [
+                    "Sudaderas"
+                ],
+                "summary": "Consultar todas las sudaderas",
+                "description": "Retorna todas las sudaderas disponibles",
+                "operationId": "2786a9f0ded8fecbd132974f634c592f",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Sudadera gris"
+                                                    },
+                                                    "tamaño": {
+                                                        "type": "string",
+                                                        "example": "M"
+                                                    },
+                                                    "color": {
+                                                        "type": "string",
+                                                        "example": "gris"
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": "30"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Sudaderas"
+                ],
+                "summary": "Crear una nueva Sudadera",
+                "description": "Crea una nueva Sudadera en el sistema.",
+                "operationId": "f6220f93f9eecd89ff6a79f021d3a68c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Tamaño",
+                                    "Color",
+                                    "Material",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Sudadera con capucha"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "L"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Rojo"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Algodón"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 45.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 30
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sudadera creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Sudadera con capucha"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "L"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Rojo"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Algodón"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 45.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 30
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Sudadera/{id}": {
+            "put": {
+                "tags": [
+                    "Sudaderas"
+                ],
+                "summary": "Actualizar una Sudadera existente",
+                "description": "Actualiza los detalles de una Sudadera con el ID proporcionado.",
+                "operationId": "be1206420f4e1ffa80a588e174ceb84e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Tamaño",
+                                    "Color",
+                                    "Material",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Sudadera con capucha gris"
+                                    },
+                                    "Tamaño": {
+                                        "type": "string",
+                                        "example": "M"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Gris"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Algodón"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 49.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 50
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sudadera actualizada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Sudadera con capucha gris"
+                                        },
+                                        "Tamaño": {
+                                            "type": "string",
+                                            "example": "M"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Gris"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Algodón"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 49.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 50
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró la Sudadera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Sudadera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sudaderas"
+                ],
+                "summary": "Eliminar una Sudadera",
+                "description": "Elimina una Sudadera del sistema usando el ID proporcionado.",
+                "operationId": "4f647ea59036993bcc4865a463dc15af",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Sudadera eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró la Sudadera",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Sudadera] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Taza": {
+            "get": {
+                "tags": [
+                    "Tazas"
+                ],
+                "summary": "Consultar todas las tazas",
+                "description": "Retorna todas las tazas disponibles",
+                "operationId": "9eae8bbdc991a8a9a6d294e8c0b45de4",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Taza blanca"
+                                                    },
+                                                    "material": {
+                                                        "type": "string",
+                                                        "example": "cerámica"
+                                                    },
+                                                    "capacidad": {
+                                                        "type": "string",
+                                                        "example": "350 ml"
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": "8"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -39,12 +1314,605 @@
                     }
                 ]
             }
+        },
+        "/api/Taza/{Taza}": {
+            "put": {
+                "tags": [
+                    "Tazas"
+                ],
+                "summary": "Actualizar una Taza existente",
+                "description": "Actualiza los detalles de una Taza con el ID proporcionado.",
+                "operationId": "a29d6d996c232512e0ca2c437645aa6b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Color",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Taza de cerámica negra"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Cerámica"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Negro"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 14.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 150
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Taza actualizada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Taza de cerámica negra"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Cerámica"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Negro"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 14.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 150
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró la Taza",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Taza] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tazas"
+                ],
+                "summary": "Crear una nueva Taza",
+                "description": "Crea una nueva Taza en el sistema.",
+                "operationId": "0de0a1a19e111a6c14e00c88a36c92bc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Color",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Taza de cerámica"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Cerámica"
+                                    },
+                                    "Color": {
+                                        "type": "string",
+                                        "example": "Blanco"
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 12.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Taza creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Taza de cerámica"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Cerámica"
+                                        },
+                                        "Color": {
+                                            "type": "string",
+                                            "example": "Blanco"
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 12.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 100
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Taza/{Taza} ": {
+            "delete": {
+                "tags": [
+                    "Tazas"
+                ],
+                "summary": "Eliminar una Taza",
+                "description": "Elimina una Taza del sistema usando el ID proporcionado.",
+                "operationId": "6506690093eff625d1fcf19a5fd270a0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Taza eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró la Taza",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Taza] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Termo": {
+            "get": {
+                "tags": [
+                    "Termos"
+                ],
+                "summary": "Consultar todos los termos",
+                "description": "Retorna todos los termos disponibles",
+                "operationId": "64101dc658f2a0e8b31ac4659d3d0d2f",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Termo térmico"
+                                                    },
+                                                    "capacidad": {
+                                                        "type": "string",
+                                                        "example": "500 ml"
+                                                    },
+                                                    "material": {
+                                                        "type": "string",
+                                                        "example": "acero inoxidable"
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": "25"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Termos"
+                ],
+                "summary": "Crear un nuevo Termo",
+                "description": "Crea un nuevo Termo en el sistema.",
+                "operationId": "5d76f7c1402365ed844c9866815bef3b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Capacidad",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Termo de acero inoxidable"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Acero inoxidable"
+                                    },
+                                    "Capacidad": {
+                                        "type": "integer",
+                                        "example": 500
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25.5
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 200
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Termo creado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Termo de acero inoxidable"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Acero inoxidable"
+                                        },
+                                        "Capacidad": {
+                                            "type": "integer",
+                                            "example": 500
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 25.5
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Termo/{id}": {
+            "put": {
+                "tags": [
+                    "Termos"
+                ],
+                "summary": "Actualizar un Termo existente",
+                "description": "Actualiza los detalles de un Termo con el ID proporcionado.",
+                "operationId": "696f4d8532b76a719903fb43c30c12ee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Nombre",
+                                    "Material",
+                                    "Capacidad",
+                                    "Precio",
+                                    "Stock"
+                                ],
+                                "properties": {
+                                    "Nombre": {
+                                        "type": "string",
+                                        "example": "Termo de plástico"
+                                    },
+                                    "Material": {
+                                        "type": "string",
+                                        "example": "Plástico"
+                                    },
+                                    "Capacidad": {
+                                        "type": "integer",
+                                        "example": 750
+                                    },
+                                    "Precio": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15.99
+                                    },
+                                    "Stock": {
+                                        "type": "integer",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Termo actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "Nombre": {
+                                            "type": "string",
+                                            "example": "Termo de plástico"
+                                        },
+                                        "Material": {
+                                            "type": "string",
+                                            "example": "Plástico"
+                                        },
+                                        "Capacidad": {
+                                            "type": "integer",
+                                            "example": 750
+                                        },
+                                        "Precio": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 15.99
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 100
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró el Termo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Termo] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Termos"
+                ],
+                "summary": "Eliminar un Termo",
+                "description": "Elimina un Termo del sistema usando el ID proporcionado.",
+                "operationId": "4eda24bbe359826f89797aca98581047",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Termo eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "No se encontró el Termo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Termo] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "Extras",
             "description": "Extras"
+        },
+        {
+            "name": "Playeras",
+            "description": "Playeras"
+        },
+        {
+            "name": "Pulseras",
+            "description": "Pulseras"
+        },
+        {
+            "name": "Sudaderas",
+            "description": "Sudaderas"
+        },
+        {
+            "name": "Tazas",
+            "description": "Tazas"
+        },
+        {
+            "name": "Termos",
+            "description": "Termos"
         }
     ],
     "components": {
@@ -56,5 +1924,10 @@
                 "in": "header"
             }
         }
-    }
+    },
+    "security": [
+        {
+            "bearer_token": []
+        }
+    ]
 }

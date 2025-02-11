@@ -17,7 +17,7 @@ class SudaderaFactory extends Factory
     public function definition(): array
     {
         return [
-                //'Sudadera_id' => \App\Models\Sudadera::all()->random()->id,
+                'Sudadera_id' => \App\Models\Sudadera::all()->random()->id,
                 'Logotipos' => ucfirst(fake()->word()),
                 'Imagenes editadas' => ucfirst(fake()->word()),
                 'Cantidad'=> fake()->numberBetween(1,100),
