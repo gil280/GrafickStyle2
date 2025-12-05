@@ -19,7 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL')],
+    // Allow all origins
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
@@ -29,6 +30,7 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    // Disable credentials so wildcard origin is allowed by browsers
+    'supports_credentials' => false,
 
 ];

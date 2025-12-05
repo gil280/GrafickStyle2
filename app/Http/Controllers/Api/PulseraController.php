@@ -23,7 +23,7 @@ class PulseraController extends Controller
  *     summary="Consultar todas las pulseras",
  *     description="Retorna todas las pulseras disponibles",
  *     tags={"Pulseras"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     @OA\Response(
  *         response=200,
  *         description="ok",

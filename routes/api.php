@@ -26,7 +26,7 @@ Route::post('login',[LoginController::class,'store']);
 
 Route::middleware('auth:sanctum')->group(function() {
 
-
+Route::apiResource('Extras',ExtrasController::class);
 Route::apiResource('Taza',TazasController::class);
 Route::apiResource('Sudadera',SudaderaController::class);
 Route::apiResource('Pulsera',PulseraController::class);

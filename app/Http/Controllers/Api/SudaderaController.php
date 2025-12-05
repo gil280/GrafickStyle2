@@ -22,7 +22,7 @@ class SudaderaController extends Controller
  *     summary="Consultar todas las sudaderas",
  *     description="Retorna todas las sudaderas disponibles",
  *     tags={"Sudaderas"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     @OA\Response(
  *         response=200,
  *         description="ok",

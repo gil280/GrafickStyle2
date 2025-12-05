@@ -22,7 +22,7 @@ class TermoController extends Controller
  *     summary="Consultar todos los termos",
  *     description="Retorna todos los termos disponibles",
  *     tags={"Termos"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     @OA\Response(
  *         response=200,
  *         description="ok",

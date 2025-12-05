@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000"
+            "url": "http://localhost:8001"
         }
     ],
     "paths": {
@@ -297,6 +297,85 @@
                 }
             }
         },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Iniciar sesión y obtener token",
+                "description": "Recibe correo, contraseña y nombre de dispositivo. Devuelve token para Authorization Bearer.",
+                "operationId": "7fe7085e1df995c6c2ee884a80eb30d6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "correo": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "garciareyesgildardo@gmail.com"
+                                    },
+                                    "contraseña": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "dispositivo": {
+                                        "type": "string",
+                                        "example": "web"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inicio de sesión correcto",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "atributos": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "nombre": {
+                                                            "type": "string",
+                                                            "example": "Juan"
+                                                        },
+                                                        "correo": {
+                                                            "type": "string",
+                                                            "example": "usuario@ejemplo.com"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "<token_aqui>"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Credenciales inválidas"
+                    }
+                }
+            }
+        },
         "/api/Playera": {
             "get": {
                 "tags": [
@@ -349,7 +428,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -572,7 +651,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -664,7 +743,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -978,7 +1057,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -1310,7 +1389,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -1626,7 +1705,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -1889,10 +1968,24 @@
             }
         }
     },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "Bearer",
+                "description": "Use: Bearer {token}"
+            }
+        }
+    },
     "tags": [
         {
             "name": "Extras",
             "description": "Extras"
+        },
+        {
+            "name": "Auth",
+            "description": "Auth"
         },
         {
             "name": "Playeras",
@@ -1915,19 +2008,9 @@
             "description": "Termos"
         }
     ],
-    "components": {
-        "securitySchemes": {
-            "bearer_token": {
-                "type": "apiKey",
-                "description": "Sanctum bearer token",
-                "name": "Authorization",
-                "in": "header"
-            }
-        }
-    },
     "security": [
         {
-            "bearer_token": []
+            "bearerAuth": []
         }
     ]
 }

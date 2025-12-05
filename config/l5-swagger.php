@@ -171,11 +171,12 @@ return [
         'securityDefinitions' => [
             'securitySchemes' => [
 
-                'bearer_token' => [ 
-                    'type' => 'apiKey',
-                    'description' => 'Sanctum bearer token',
-                    'name' => 'Authorization',
-                    'in' => 'header',
+                // Use a single HTTP Bearer scheme for token auth in Swagger UI
+                'bearerAuth' => [
+                    'type' => 'http',
+                    'scheme' => 'bearer',
+                    'bearerFormat' => 'Bearer',
+                    'description' => 'Use: Bearer {token}',
                 ],
                 /*
                  * Examples of Security schemes
@@ -223,10 +224,9 @@ return [
                 ],
                 */
             ],
-            'security' => [
-               
-              ['bearer_token' => []]
-            ],
+                        'security' => [
+                            ['bearerAuth' => []]
+                        ],
         ],
 
         /*

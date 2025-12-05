@@ -22,7 +22,7 @@ class TazasController extends Controller
  *     summary="Consultar todas las tazas",
  *     description="Retorna todas las tazas disponibles",
  *     tags={"Tazas"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     @OA\Response(
  *         response=200,
  *         description="ok",

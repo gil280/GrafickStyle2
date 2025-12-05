@@ -25,7 +25,7 @@ class PlayeraController extends Controller
  *     summary="Consultar todas las playera",
  *     description="Retorna todas las playera disponibles",
  *     tags={"Playeras"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     @OA\Response(
  *         response=200,
  *         description="ok",
@@ -109,7 +109,7 @@ class PlayeraController extends Controller
  * @OA\Put(
  *     path="/api/Playera/{id}",
  *     tags={"Playeras"},
- *     security={{"bearer_token":{}}},
+ *     security={{"bearerAuth":{}}},
  *     summary="Actualizar una Playera existente",
  *     description="Actualiza los detalles de una Playera con el ID proporcionado.",
  * 
